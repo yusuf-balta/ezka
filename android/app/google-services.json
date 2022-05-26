@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "223445815434",
+    "firebase_url": "https://ezka-942f9-default-rtdb.europe-west1.firebasedatabase.app",
+    "project_id": "ezka-942f9",
+    "storage_bucket": "ezka-942f9.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:223445815434:android:8aba2f7ca1b525438c9d73",
+        "android_client_info": {
+          "package_name": "com.example.ezka"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "223445815434-6srol8t7q2nkd7tl3o4kilh48m2ckkt2.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCHyYgjgduXTLdSOU87GFsyzJSXG2mLcho"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "223445815434-6srol8t7q2nkd7tl3o4kilh48m2ckkt2.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
