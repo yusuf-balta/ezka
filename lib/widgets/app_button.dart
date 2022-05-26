@@ -10,20 +10,13 @@ class AppButton extends StatelessWidget {
   double fontSize;
   double height;
   double radius;
-  AppButton({
-    Key? key,
-    required this.onPressed,
-    required this.text,
-    this.color,
-    this.width,
-    this.fontSize = 12,
-    this.height = 40,
-    this.radius = 30,
-  }) : super(key: key);
+  TextStyle? textStyle;
+  AppButton({Key? key, required this.onPressed, required this.text, this.color, this.width, this.fontSize = 12, this.height = 40, this.radius = 30, this.textStyle}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     color ??= AppColor().buttonColor;
+    textStyle ??= AppTextStyle().buttonTextStyle;
     return Container(
       height: height,
       width: width,
@@ -50,10 +43,7 @@ class AppButton extends StatelessWidget {
             ),
           ),
         ),
-        child: Text(
-          text,
-          style: AppTextStyle().buttonTextStyle,
-        ),
+        child: Text(text, style: textStyle),
       ),
     );
   }

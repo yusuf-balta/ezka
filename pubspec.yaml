@@ -47,6 +47,7 @@ dependencies:
   #for geocoder
   geolocator: ^8.2.1
   geocoding: ^2.0.4
+  cloud_firestore: ^3.1.16
   
 
 dev_dependencies:

@@ -6,12 +6,18 @@ class UserModel {
   String? birthDate;
   String? email;
   String? password;
+  String? cityName;
+  String? streetName;
+  String? countyName;
   UserModel({
     this.name,
     this.surName,
     this.birthDate,
     this.email,
     this.password,
+    this.cityName,
+    this.streetName,
+    this.countyName,
   });
 
   UserModel copyWith({
@@ -20,6 +26,9 @@ class UserModel {
     String? birthDate,
     String? email,
     String? password,
+    String? cityName,
+    String? streetName,
+    String? countyName,
   }) {
     return UserModel(
       name: name ?? this.name,
@@ -27,6 +36,9 @@ class UserModel {
       birthDate: birthDate ?? this.birthDate,
       email: email ?? this.email,
       password: password ?? this.password,
+      cityName: cityName ?? this.cityName,
+      streetName: streetName ?? this.streetName,
+      countyName: countyName ?? this.countyName,
     );
   }
 
@@ -37,6 +49,9 @@ class UserModel {
       'birthDate': birthDate,
       'email': email,
       'password': password,
+      'cityName': cityName,
+      'streetName': streetName,
+      'countyName': countyName,
     };
   }
 
@@ -47,6 +62,9 @@ class UserModel {
       birthDate: map['birthDate'],
       email: map['email'],
       password: map['password'],
+      cityName: map['cityName'],
+      streetName: map['streetName'],
+      countyName: map['countyName'],
     );
   }
 
@@ -56,18 +74,18 @@ class UserModel {
 
   @override
   String toString() {
-    return 'UserModel(name: $name, surName: $surName, birthDate: $birthDate, email: $email, password: $password)';
+    return 'UserModel(name: $name, surName: $surName, birthDate: $birthDate, email: $email, password: $password, cityName: $cityName, streetName: $streetName, countyName: $countyName)';
   }
 
   @override
   bool operator ==(Object other) {
     if (identical(this, other)) return true;
 
-    return other is UserModel && other.name == name && other.surName == surName && other.birthDate == birthDate && other.email == email && other.password == password;
+    return other is UserModel && other.name == name && other.surName == surName && other.birthDate == birthDate && other.email == email && other.password == password && other.cityName == cityName && other.streetName == streetName && other.countyName == countyName;
   }
 
   @override
   int get hashCode {
-    return name.hashCode ^ surName.hashCode ^ birthDate.hashCode ^ email.hashCode ^ password.hashCode;
+    return name.hashCode ^ surName.hashCode ^ birthDate.hashCode ^ email.hashCode ^ password.hashCode ^ cityName.hashCode ^ streetName.hashCode ^ countyName.hashCode;
   }
 }

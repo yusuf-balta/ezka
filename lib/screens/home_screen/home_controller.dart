@@ -1,8 +1,11 @@
 import 'package:ezka/constans/enums/end_point.dart';
+import 'package:ezka/model/user_model.dart';
 import 'package:ezka/services/firebase_service.dart';
+import 'package:ezka/widgets/app_dialogs.dart';
+import 'package:flutter/material.dart';
 import 'package:geocoding/geocoding.dart';
 import 'package:geolocator/geolocator.dart';
-import 'package:get/get_state_manager/get_state_manager.dart';
+import 'package:get/get.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 
 import '../../model/adress_model.dart';
@@ -13,6 +16,29 @@ class HomeController extends GetxController {
   FireBaseService fireBaseService = FireBaseService();
   late GoogleMapController mapController;
 
+  UserModel? _userModel;
+  UserModel? get getUserModel => _userModel;
+  clearUser() => _userModel = null;
+
+  late final TextEditingController nameController;
+  late final TextEditingController surNameController;
+  late final TextEditingController cityNameController;
+  @override
+  void onClose() {
+    nameController.dispose();
+    surNameController.dispose();
+    cityNameController.dispose();
+    super.onClose();
+  }
+
+  @override
+  void onInit() {
+    super.onInit();
+    nameController = TextEditingController();
+    surNameController = TextEditingController();
+    cityNameController = TextEditingController();
+  }
+
   CameraPosition initPlex = const CameraPosition(
     target: LatLng(38.734802, 35.467987),
     zoom: 4.5,
@@ -21,12 +47,22 @@ class HomeController extends GetxController {
   Future<void> getAddressFromLatLong(Position position) async {
     List<Placemark> placemarks = await placemarkFromCoordinates(position.latitude, position.longitude);
     Placemark place = placemarks[0];
-    fireBaseService.setData(endPoint: EndPoint.adress.path, data: _setAdressModel(place).toJson());
+    try {
+      fireBaseService.setAdress(endPoint: EndPoint.users.path, data: _setAdressModel(place).toMap());
+    } catch (e) {
+      AppDialogs.failedSnackbar(e.toString());
+    }
   }
 
-  Future<void> postLocationToFirebase() async {
+  Future<void> getDataFromDb(BuildContext context) async {
+    _userModel = await fireBaseService.getAdress(name: nameController.text, surName: surNameController.text, cityName: cityNameController.text);
+  }
+
+  Future<void> postLocationToFirebase(BuildContext context) async {
+    AppDialogs.loadingDialog(context);
     Position position = await _getGeoLocationPosition();
     await getAddressFromLatLong(position);
+    Get.back();
   }
 
   Future<Position> _getGeoLocationPosition() async {
@@ -46,11 +82,8 @@ class HomeController extends GetxController {
       }
     }
     if (permission == LocationPermission.deniedForever) {
-      // Permissions are denied forever, handle appropriately.
       return Future.error('Location permissions are permanently denied, we cannot request permissions.');
     }
-    // When we reach here, permissions are granted and we can
-    // continue accessing the position of the device.
     return await Geolocator.getCurrentPosition(desiredAccuracy: LocationAccuracy.high);
   }
 

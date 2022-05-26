@@ -13,4 +13,9 @@ class AppTextStyle {
       );
 
   TextStyle get buttonTextStyle => const TextStyle(color: Colors.red);
+
+  TextStyle get searchButtonTextStyle => const TextStyle(color: Colors.white);
+
+  TextStyle get darkTextSyle => const TextStyle(color: Color.fromARGB(255, 0, 32, 175), fontWeight: FontWeight.w500);
+  TextStyle get redTextStyle => const TextStyle(color: Color.fromARGB(255, 250, 1, 1), fontWeight: FontWeight.w500);
 }

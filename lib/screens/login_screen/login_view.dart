@@ -1,5 +1,6 @@
 import 'package:ezka/constans/color/app_gradient.dart';
 import 'package:ezka/constans/extensions/context_extension.dart';
+import 'package:ezka/screens/home_screen/home_view.dart';
 import 'package:ezka/screens/login_screen/login_controller.dart';
 import 'package:ezka/screens/register_screen/register_view.dart';
 import 'package:ezka/services/validation_service.dart';
@@ -53,7 +54,7 @@ class LoginView extends StatelessWidget {
                     bool isValid = formKey.currentState?.validate() ?? false;
                     if (isValid) {
                       if (await loginController.signIn()) {
-                        Get.offAndToNamed(LoginController.instanceName);
+                        Get.offAndToNamed(HomeView.routeName);
                       }
                     }
                   },

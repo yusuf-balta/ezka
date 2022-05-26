@@ -46,7 +46,7 @@ class RegisterController extends GetxController {
 
       fireBaseService.setData(
         endPoint: EndPoint.users.path,
-        data: _setUserModel().toJson(),
+        data: _setUserModel().toMap(),
       );
       Get.back();
       AppDialogs.succsesSnackbar("Kayıt Başarılı");

@@ -20,6 +20,7 @@ class AppTextInputSecond extends StatelessWidget {
     this.obscureText = false,
     this.prefixIcon,
     this.inputFormatter,
+    this.isUnderline = false,
   }) : super(key: key);
 
   final TextEditingController controller;
@@ -34,6 +35,7 @@ class AppTextInputSecond extends StatelessWidget {
   final Widget? prefixIcon;
   final bool obscureText;
   final List<TextInputFormatter>? inputFormatter;
+  final bool isUnderline;
 
   @override
   Widget build(BuildContext context) {
@@ -64,11 +66,11 @@ class AppTextInputSecond extends StatelessWidget {
         labelText: labelText,
         hintText: hintText,
         filled: true,
-        focusedErrorBorder: AppBorder().appTextInputBorderSecond,
-        errorBorder: AppBorder().appTextInputBorderSecond,
+        focusedErrorBorder: isUnderline ? AppBorder().appTextInputBorderUnderline : AppBorder().appTextInputBorderSecond,
+        errorBorder: isUnderline ? AppBorder().appTextInputBorderUnderline : AppBorder().appTextInputBorderSecond,
         fillColor: AppColor().textInputFillColorSecond,
-        enabledBorder: AppBorder().appTextInputBorderSecond,
-        focusedBorder: AppBorder().appTextInputBorderSecond,
+        enabledBorder: isUnderline ? AppBorder().appTextInputBorderUnderline : AppBorder().appTextInputBorderSecond,
+        focusedBorder: isUnderline ? AppBorder().appTextInputBorderUnderline : AppBorder().appTextInputBorderSecond,
       ),
     );
   }

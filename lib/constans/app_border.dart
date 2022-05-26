@@ -17,4 +17,6 @@ class AppBorder {
           width: 0,
         ),
       );
+
+  InputBorder get appTextInputBorderUnderline => const UnderlineInputBorder();
 }
